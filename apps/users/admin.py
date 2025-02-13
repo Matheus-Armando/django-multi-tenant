@@ -1,4 +1,11 @@
-# from django.contrib import admin
-# from .models import User  # Assuming you have a User model defined in models.py
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import CustomUser
 
-# admin.site.register(User)  # Register the User model with the admin site
+@admin.register(CustomUser)
+class CustomUserAdmin(UserAdmin):
+    list_display = ['username', 'email', 'is_tenant_owner', 'tenant']
+    list_filter = ['is_tenant_owner', 'tenant', 'is_active']
+    fieldsets = UserAdmin.fieldsets + (
+        ('Tenant Information', {'fields': ('tenant', 'is_tenant_owner')}),
+    )

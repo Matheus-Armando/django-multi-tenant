@@ -11,7 +11,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Configurações específicas do ambiente local
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django_tenants.postgresql_backend',
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
@@ -22,3 +22,6 @@ DATABASES = {
         }
     }
 }
+
+PUBLIC_SCHEMA_NAME = 'public'
+PUBLIC_SCHEMA_URLCONF = 'config.urls'
